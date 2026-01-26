@@ -11,138 +11,128 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Kanit:wght@300;400;600&display=swap');
         body { font-family: 'Inter', 'Kanit', sans-serif; background-color: #0f172a; color: #f8fafc; }
         .swiper { width: 100%; padding-bottom: 40px; }
-        .service-swiper { height: 500px; }
-        .review-swiper { height: 350px; }
-        .swiper-slide { width: 310px; }
-        .service-card, .review-card { 
-            background: #1e293b; border: 1px solid #334155; border-radius: 24px; overflow: hidden;
-        }
-        .lang-btn.active { background-color: #3b82f6; color: white; border-color: #3b82f6; }
+        .service-card, .review-card { background: #1e293b; border: 1px solid #334155; border-radius: 28px; overflow: hidden; }
+        .lang-btn.active { background-color: #3b82f6; color: white; }
         input { background: #0f172a !important; color: white !important; border: 1px solid #334155 !important; }
         input[type="date"] { color-scheme: dark; }
-        /* Logo styling */
-        .company-logo { height: 45px; width: auto; object-fit: contain; }
+        /* Logo focus */
+        .header-logo { height: 60px; width: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5)); }
+        /* Modal Animation */
+        #summary-modal { display: none; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
     </style>
 </head>
 <body>
 
-    <header class="p-4 sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur-md border-b border-slate-800">
+    <header class="p-4 sticky top-0 z-50 bg-[#0f172a]/95 border-b border-slate-800">
         <div class="flex justify-between items-center max-w-4xl mx-auto">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Best Home Care Phuket Logo" class="company-logo">
-                <div class="hidden sm:block">
-                    <h1 class="text-md font-bold text-white tracking-tighter leading-tight">BEST HOME CARE</h1>
-                    <p id="sub-header" class="text-[8px] text-blue-400 font-bold uppercase tracking-[0.2em]">Phuket Premium Service</p>
+            <div class="flex items-center gap-4">
+                <img src="logo.jpg" alt="Logo" class="header-logo">
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-tighter leading-none">BEST HOME CARE</h1>
+                    <p id="sub-header" class="text-[10px] text-blue-400 font-bold uppercase tracking-widest mt-1">Premium Phuket Service</p>
                 </div>
             </div>
-            <div class="flex bg-slate-800 p-1 rounded-full border border-slate-700">
-                <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-4 py-1 rounded-full text-xs font-bold active transition-all">EN</button>
-                <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn px-4 py-1 rounded-full text-xs font-bold transition-all">RU</button>
+            <div class="flex bg-slate-800 p-1 rounded-full border border-slate-700 scale-90">
+                <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-4 py-1 rounded-full text-xs font-bold active">EN</button>
+                <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn px-4 py-1 rounded-full text-xs font-bold">RU</button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-4">
-        <div class="bg-slate-800/50 p-5 rounded-3xl border border-slate-700 mb-6">
-            <h2 class="text-sm font-bold mb-4 flex items-center lang-txt" data-en="Customer Information" data-ru="Информация о клиенте">
-                <i class="fa-solid fa-user-circle mr-2 text-blue-400"></i> Customer Info
-            </h2>
-            <div class="grid grid-cols-1 gap-3">
-                <input type="text" id="cust-name" placeholder="Full Name / Имя" class="p-3 rounded-xl outline-none text-sm w-full">
-                <input type="tel" id="cust-phone" placeholder="Phone Number / Телефон" class="p-3 rounded-xl outline-none text-sm w-full">
+    <main class="max-w-4xl mx-auto px-4 py-6">
+        <div class="bg-slate-800/50 p-6 rounded-[2rem] border border-slate-700 mb-8 shadow-2xl">
+            <div class="grid grid-cols-1 gap-4">
+                <div class="space-y-1">
+                    <label class="text-[10px] uppercase text-gray-400 font-bold ml-2 lang-txt" data-en="Your Name" data-ru="Ваше имя">Your Name</label>
+                    <input type="text" id="cust-name" placeholder="..." class="p-4 rounded-2xl outline-none text-sm w-full">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] uppercase text-gray-400 font-bold ml-2 lang-txt" data-en="Phone Number" data-ru="Номер телефона">Phone Number</label>
+                    <input type="tel" id="cust-phone" placeholder="..." class="p-4 rounded-2xl outline-none text-sm w-full">
+                </div>
             </div>
         </div>
 
-        <h2 class="text-xs font-bold mb-4 uppercase tracking-widest text-gray-500 lang-txt" data-en="Our Services" data-ru="Наши услуги">Our Services</h2>
-        <div class="swiper service-swiper">
+        <div class="swiper service-swiper mb-10">
             <div class="swiper-wrapper">
-                
                 <div class="swiper-slide service-card">
-                    <img src="https://images.pexels.com/photos/4099467/pexels-photo-4099467.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-40 w-full object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold lang-txt" data-en="Cleaning Service" data-ru="Уборка">Cleaning Service</h3>
-                        <div class="mt-4 space-y-2">
-                            <input type="date" id="date-cleaning" class="w-full p-2 rounded-lg text-sm">
-                            <button onclick="getLocation('cleaning')" id="loc-cleaning" class="w-full py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Share Location" data-ru="Локация">Share Location</span>
-                            </button>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <button onclick="sendBooking('Instagram', 'Cleaning')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold uppercase">IG DM</button>
-                            <button onclick="sendBooking('Telegram', 'Cleaning')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold uppercase">Telegram</button>
-                        </div>
+                    <img src="https://images.pexels.com/photos/4099467/pexels-photo-4099467.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-44 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold lang-txt" data-en="Cleaning" data-ru="Уборка">Cleaning</h3>
+                        <input type="date" id="date-cleaning" class="w-full mt-4 p-3 rounded-xl text-sm mb-3">
+                        <button onclick="getLocation('cleaning')" id="btn-loc-cleaning" class="w-full py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs flex justify-center items-center gap-2 mb-4">
+                            <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Save Location" data-ru="Сохранить локацию">Save Location</span>
+                        </button>
+                        <button onclick="openSummary('Cleaning')" class="w-full bg-gradient-to-r from-purple-600 to-pink-500 py-4 rounded-2xl font-bold text-sm shadow-xl flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram text-lg"></i> BOOK NOW (IG)
+                        </button>
                     </div>
                 </div>
 
                 <div class="swiper-slide service-card">
-                    <img src="pool1.jpg" class="h-40 w-full object-cover" alt="Pool Service">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold lang-txt" data-en="Pool Service" data-ru="Бассейн">Pool Service</h3>
-                        <div class="mt-4 space-y-2">
-                            <input type="date" id="date-pool" class="w-full p-2 rounded-lg text-sm">
-                            <button onclick="getLocation('pool')" id="loc-pool" class="w-full py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Share Location" data-ru="Локация">Share Location</span>
-                            </button>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <button onclick="sendBooking('Instagram', 'Pool')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold uppercase">IG DM</button>
-                            <button onclick="sendBooking('Telegram', 'Pool')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold uppercase">Telegram</button>
-                        </div>
+                    <img src="pool1.jpg" class="h-44 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold lang-txt" data-en="Pool Service" data-ru="Бассейн">Pool Service</h3>
+                        <input type="date" id="date-pool" class="w-full mt-4 p-3 rounded-xl text-sm mb-3">
+                        <button onclick="getLocation('pool')" id="btn-loc-pool" class="w-full py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs flex justify-center items-center gap-2 mb-4">
+                            <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Save Location" data-ru="Сохранить локацию">Save Location</span>
+                        </button>
+                        <button onclick="openSummary('Pool Service')" class="w-full bg-gradient-to-r from-purple-600 to-pink-500 py-4 rounded-2xl font-bold text-sm shadow-xl flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram text-lg"></i> BOOK NOW (IG)
+                        </button>
                     </div>
                 </div>
 
                 <div class="swiper-slide service-card">
-                    <img src="https://images.pexels.com/photos/4505171/pexels-photo-4505171.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-40 w-full object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold lang-txt" data-en="Garden Care" data-ru="Уход за садом">Garden Care</h3>
-                        <div class="mt-4 space-y-2">
-                            <input type="date" id="date-garden" class="w-full p-2 rounded-lg text-sm">
-                            <button onclick="getLocation('garden')" id="loc-garden" class="w-full py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Share Location" data-ru="Локация">Share Location</span>
-                            </button>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <button onclick="sendBooking('Instagram', 'Garden')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold uppercase">IG DM</button>
-                            <button onclick="sendBooking('Telegram', 'Garden')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold uppercase">Telegram</button>
-                        </div>
+                    <img src="https://images.pexels.com/photos/4505171/pexels-photo-4505171.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-44 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold lang-txt" data-en="Garden Care" data-ru="Уход за садом">Garden Care</h3>
+                        <input type="date" id="date-garden" class="w-full mt-4 p-3 rounded-xl text-sm mb-3">
+                        <button onclick="getLocation('garden')" id="btn-loc-garden" class="w-full py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs flex justify-center items-center gap-2 mb-4">
+                            <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Save Location" data-ru="Сохранить локацию">Save Location</span>
+                        </button>
+                        <button onclick="openSummary('Garden Care')" class="w-full bg-gradient-to-r from-purple-600 to-pink-500 py-4 rounded-2xl font-bold text-sm shadow-xl flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram text-lg"></i> BOOK NOW (IG)
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
 
-        <h2 class="text-xs font-bold mt-10 mb-4 uppercase tracking-widest text-gray-500 lang-txt" data-en="Customer Reviews" data-ru="Отзывы клиентов">Customer Reviews</h2>
-        <div class="swiper review-swiper">
+        <h2 class="text-xs font-bold mb-4 uppercase tracking-[0.2em] text-blue-400 lang-txt" data-en="Success Surveys" data-ru="Результаты опросов">Success Surveys</h2>
+        <div class="swiper review-swiper mb-10">
             <div class="swiper-wrapper">
-                <div class="swiper-slide review-card"><img src="survey1.jpg" class="w-full h-full object-cover shadow-lg"></div>
-                <div class="swiper-slide review-card"><img src="survey2.jpg" class="w-full h-full object-cover shadow-lg"></div>
-                <div class="swiper-slide review-card"><img src="survey3.jpg" class="w-full h-full object-cover shadow-lg"></div>
+                <div class="swiper-slide review-card"><img src="survey1.jpg" class="w-full h-full object-contain"></div>
+                <div class="swiper-slide review-card"><img src="survey2.jpg" class="w-full h-full object-contain"></div>
+                <div class="swiper-slide review-card"><img src="survey3.jpg" class="w-full h-full object-contain"></div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </main>
 
-    <footer class="text-center py-10 opacity-30">
-        <p class="text-[8px] tracking-[0.4em] uppercase">Best Home Care • Phuket • 2024</p>
-    </footer>
+    <div id="summary-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="bg-slate-800 w-full max-w-sm rounded-[2.5rem] p-8 border border-blue-500/30 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center text-white lang-txt" data-en="Booking Summary" data-ru="Итог бронирования">Booking Summary</h2>
+            <div id="summary-content" class="space-y-4 text-sm bg-slate-900/50 p-5 rounded-2xl border border-slate-700">
+                </div>
+            <div class="mt-8 space-y-3">
+                <button onclick="confirmAndSend()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-500 transition-all lang-txt" data-en="Confirm & Send Message" data-ru="Подтвердить и отправить">Confirm & Send Message</button>
+                <button onclick="closeModal()" class="w-full text-slate-400 py-2 text-xs lang-txt" data-en="Go Back" data-ru="Назад">Go Back</button>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         let userLocation = "Not provided";
-        
-        // Swiper Config
-        const commonConfig = {
-            effect: "coverflow", centeredSlides: true, slidesPerView: "auto",
-            coverflowEffect: { rotate: 5, stretch: 0, depth: 100, modifier: 1.5, slideShadows: false },
-            pagination: { el: ".swiper-pagination", clickable: true },
-        };
-        new Swiper(".service-swiper", commonConfig);
-        new Swiper(".review-swiper", commonConfig);
+        let currentBookingMessage = "";
+
+        const commonSwiper = { effect: "coverflow", centeredSlides: true, slidesPerView: "auto", coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: false }, pagination: { el: ".swiper-pagination", clickable: true } };
+        new Swiper(".service-swiper", commonSwiper);
+        new Swiper(".review-swiper", commonSwiper);
 
         function setLanguage(lang) {
             document.querySelectorAll('.lang-txt').forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
-            const sub = document.getElementById('sub-header');
-            if(sub) sub.innerText = lang === 'en' ? "Phuket Premium Service" : "Премиальный сервис на Пхукете";
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
         }
@@ -152,35 +142,44 @@
                 navigator.geolocation.getCurrentPosition((pos) => {
                     userLocation = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
                     alert("📍 Location saved!");
-                    document.getElementById(`loc-${type}`).style.borderColor = "#22c55e";
-                    document.getElementById(`loc-${type}`).style.color = "#22c55e";
-                }, () => alert("Please enable GPS."));
+                    document.getElementById(`btn-loc-${type}`).classList.replace('bg-slate-900', 'bg-green-900/40');
+                }, () => alert("GPS error. Please allow location access."));
             }
         }
 
-        async function sendBooking(platform, serviceName) {
+        function openSummary(service) {
             const name = document.getElementById('cust-name').value;
             const phone = document.getElementById('cust-phone').value;
-            const date = document.getElementById(`date-${serviceName.toLowerCase()}`).value;
+            const dateInput = document.getElementById(`date-${service.toLowerCase().replace(' service', '')}`).value;
 
-            if (!name || !phone || !date) {
-                alert("Please enter Name, Phone, and Date!");
+            if (!name || !phone || !dateInput) {
+                alert("Please fill in Name, Phone and Date!");
                 return;
             }
 
-            const message = `✨ NEW BOOKING ✨\nService: ${serviceName}\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nLocation: ${userLocation}`;
+            currentBookingMessage = `✨ BEST HOME CARE ✨\n━━━━━━━━━━━━━━\n👤 Name: ${name}\n📞 Phone: ${phone}\n🧹 Service: ${service}\n📅 Date: ${dateInput}\n📍 Location: ${userLocation}`;
             
-            if (platform === 'Telegram') {
-                window.open(`https://t.me/+66982226426?text=${encodeURIComponent(message)}`, '_blank');
-            } else {
-                try {
-                    await navigator.clipboard.writeText(message);
-                    alert("Booking info copied! Redirecting to Instagram DM...");
-                    window.open("https://ig.me/m/best_home_care_phu", '_blank');
-                } catch (err) {
-                    window.open("https://www.instagram.com/best_home_care_phu", '_blank');
-                }
+            document.getElementById('summary-content').innerHTML = `
+                <p><b>Service:</b> ${service}</p>
+                <p><b>Customer:</b> ${name}</p>
+                <p><b>Phone:</b> ${phone}</p>
+                <p><b>Date:</b> ${dateInput}</p>
+                <p class="text-green-400 text-[10px] truncate"><b>Location:</b> Saved ✅</p>
+            `;
+            document.getElementById('summary-modal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('summary-modal').style.display = 'none'; }
+
+        async function confirmAndSend() {
+            try {
+                await navigator.clipboard.writeText(currentBookingMessage);
+                alert("Copied to clipboard! Opening Instagram...");
+                window.open("https://ig.me/m/best_home_care_phu", '_blank');
+            } catch (err) {
+                window.open("https://www.instagram.com/best_home_care_phu", '_blank');
             }
+            closeModal();
         }
     </script>
 </body>
