@@ -8,106 +8,91 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Manrope:wght@400;700&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #0f172a; 
-            color: #f8fafc;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Kanit:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', 'Kanit', sans-serif; background-color: #0f172a; color: #f8fafc; }
         .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
-        .swiper-slide { width: 300px; }
+        .swiper-slide { width: 320px; }
         .service-card { 
-            background: #1e293b; 
-            border: 1px solid #334155;
-            border-radius: 24px; 
-            overflow: hidden; 
-            transition: all 0.3s ease;
+            background: #1e293b; border: 1px solid #334155; border-radius: 28px; 
+            overflow: hidden; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
         }
         .lang-btn.active { background-color: #3b82f6; color: white; border-color: #3b82f6; }
-        /* Custom styling for date input */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-        }
+        input[type="date"] { color-scheme: dark; }
     </style>
 </head>
 <body>
 
-    <header class="p-6 sticky top-0 z-50 bg-[#0f172a]/80 backdrop-blur-md">
+    <header class="p-6 sticky top-0 z-50 bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800">
         <div class="flex justify-between items-center max-w-4xl mx-auto">
-            <div class="text-left">
-                <h1 class="text-xl font-bold text-white uppercase tracking-tighter">Best Home Care</h1>
-                <p id="sub-header" class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Phuket Premium Service</p>
+            <div>
+                <h1 class="text-xl font-bold text-white tracking-tighter">BEST HOME CARE</h1>
+                <p id="sub-header" class="text-[10px] text-blue-400 font-bold uppercase tracking-[0.2em]">Phuket Premium Service</p>
             </div>
-            <div class="flex space-x-1 bg-slate-800 p-1 rounded-full">
+            <div class="flex bg-slate-800 p-1 rounded-full border border-slate-700">
                 <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-4 py-1 rounded-full text-xs font-bold active">EN</button>
                 <button onclick="setLanguage('ru')" id="btn-ru" class="lang-btn px-4 py-1 rounded-full text-xs font-bold">RU</button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-4">
-        
+    <main class="max-w-4xl mx-auto px-4 py-6">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 
                 <div class="swiper-slide service-card">
-                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500" class="h-40 w-full object-cover shadow-inner">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white lang-txt" data-en="Condo & Apartment" data-ru="Кондо и Апартаменты">Condo & Apartment</h3>
-                        <p class="text-gray-400 text-xs mt-2 h-12 lang-txt" data-en="Standard and deep cleaning for residences." data-ru="Стандартная и глубокая уборка жилых помещений.">Standard and deep cleaning for residences.</p>
-                        
-                        <div class="mt-4 space-y-3">
-                            <div class="flex items-center bg-slate-900 rounded-lg p-2 border border-slate-700">
-                                <i class="fa-solid fa-calendar text-blue-400 mr-2"></i>
-                                <input type="date" class="bg-transparent text-xs outline-none w-full text-white">
+                    <img src="https://images.pexels.com/photos/4099467/pexels-photo-4099467.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-44 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold lang-txt" data-en="Cleaning Service" data-ru="Уборка">Cleaning Service</h3>
+                        <p class="text-gray-400 text-sm mt-2 h-10 lang-txt" data-en="Professional condo and villa cleaning." data-ru="Профессиональная уборка вилл и кондо.">Professional condo and villa cleaning.</p>
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center bg-slate-900/50 rounded-xl p-3 border border-slate-700">
+                                <i class="fa-solid fa-calendar text-blue-400 mr-3"></i>
+                                <input type="date" id="date1" class="bg-transparent text-sm outline-none w-full text-white">
                             </div>
-                            <button onclick="requestLocation()" class="w-full flex items-center justify-center bg-slate-900 rounded-lg p-2 border border-slate-700 hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-location-dot text-green-400 mr-2"></i>
-                                <span class="text-xs lang-txt" data-en="Send Location" data-ru="Отправить локацию">Send Location</span>
+                            <button onclick="requestLocation()" class="w-full flex items-center justify-center bg-slate-900/50 rounded-xl p-3 border border-slate-700 hover:bg-slate-800 transition">
+                                <i class="fa-solid fa-location-dot text-green-400 mr-3"></i>
+                                <span class="text-sm lang-txt" data-en="Send Location" data-ru="Локация">Send Location</span>
                             </button>
                         </div>
-
-                        <a href="https://www.instagram.com/best_home_care_phu" target="_blank" class="block text-center mt-5 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold text-sm transition shadow-lg lang-txt" data-en="BOOK NOW" data-ru="ЗАБРОНИРОВАТЬ">BOOK NOW</a>
+                        <a href="https://www.instagram.com/best_home_care_phu" target="_blank" class="block text-center mt-6 bg-blue-600 text-white py-4 rounded-2xl font-bold text-sm btn-book">BOOK NOW</a>
                     </div>
                 </div>
 
-                <div class="swiper-slide service-card border-blue-500/50">
-                    <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=500" class="h-40 w-full object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white lang-txt" data-en="Full Pool Service" data-ru="Обслуживание бассейна">Full Pool Service</h3>
-                        <p class="text-gray-400 text-xs mt-2 h-12 lang-txt" data-en="Chemical balance and complete cleaning." data-ru="Химический баланс и полная чистка бассейна.">Chemical balance and complete cleaning.</p>
-                        
-                        <div class="mt-4 space-y-3">
-                            <div class="flex items-center bg-slate-900 rounded-lg p-2 border border-slate-700">
-                                <i class="fa-solid fa-calendar text-blue-400 mr-2"></i>
-                                <input type="date" class="bg-transparent text-xs outline-none w-full text-white">
+                <div class="swiper-slide service-card">
+                    <img src="https://images.pexels.com/photos/261181/pexels-photo-261181.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-44 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold lang-txt" data-en="Pool Maintenance" data-ru="Бассейн">Pool Maintenance</h3>
+                        <p class="text-gray-400 text-sm mt-2 h-10 lang-txt" data-en="Water testing and deep pool cleaning." data-ru="Тестирование воды и чистка бассейна.">Water testing and deep pool cleaning.</p>
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center bg-slate-900/50 rounded-xl p-3 border border-slate-700">
+                                <i class="fa-solid fa-calendar text-blue-400 mr-3"></i>
+                                <input type="date" id="date2" class="bg-transparent text-sm outline-none w-full text-white">
                             </div>
-                            <button onclick="requestLocation()" class="w-full flex items-center justify-center bg-slate-900 rounded-lg p-2 border border-slate-700 hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-location-dot text-green-400 mr-2"></i>
-                                <span class="text-xs lang-txt" data-en="Send Location" data-ru="Отправить локацию">Send Location</span>
+                            <button onclick="requestLocation()" class="w-full flex items-center justify-center bg-slate-900/50 rounded-xl p-3 border border-slate-700 hover:bg-slate-800 transition">
+                                <i class="fa-solid fa-location-dot text-green-400 mr-3"></i>
+                                <span class="text-sm lang-txt" data-en="Send Location" data-ru="Локация">Send Location</span>
                             </button>
                         </div>
-                        <a href="https://www.instagram.com/best_home_care_phu" target="_blank" class="block text-center mt-5 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold text-sm transition lang-txt" data-en="BOOK NOW" data-ru="ЗАБРОНИРОВАТЬ">BOOK NOW</a>
+                        <a href="https://www.instagram.com/best_home_care_phu" target="_blank" class="block text-center mt-6 bg-blue-600 text-white py-4 rounded-2xl font-bold text-sm btn-book">BOOK NOW</a>
                     </div>
                 </div>
 
-                <div class="swiper-slide service-card border-green-500/50">
-                    <img src="https://images.unsplash.com/photo-1558905619-172542632462?auto=format&fit=crop&w=500" class="h-40 w-full object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white lang-txt" data-en="Garden Care" data-ru="Уход за садом">Garden Care</h3>
-                        <p class="text-gray-400 text-xs mt-2 h-12 lang-txt" data-en="Trimming, fertilizing, and plant care." data-ru="Стрижка, удобрение и уход за растениями.">Trimming, fertilizing, and plant care.</p>
-                        
-                        <div class="mt-4 space-y-3">
-                            <div class="flex items-center bg-slate-900 rounded-lg p-2 border border-slate-700">
-                                <i class="fa-solid fa-calendar text-blue-400 mr-2"></i>
-                                <input type="date" class="bg-transparent text-xs outline-none w-full text-white">
+                <div class="swiper-slide service-card">
+                    <img src="https://images.pexels.com/photos/4505171/pexels-photo-4505171.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-44 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold lang-txt" data-en="Garden & Lawn" data-ru="Сад и Газон">Garden & Lawn</h3>
+                        <p class="text-gray-400 text-sm mt-2 h-10 lang-txt" data-en="Trimming, watering, and fertilizing." data-ru="Стрижка, полив и удобрение.">Trimming, watering, and fertilizing.</p>
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center bg-slate-900/50 rounded-xl p-3 border border-slate-700">
+                                <i class="fa-solid fa-calendar text-blue-400 mr-3"></i>
+                                <input type="date" id="date3" class="bg-transparent text-sm outline-none w-full text-white">
                             </div>
-                            <button onclick="requestLocation()" class="w-full flex items-center justify-center bg-slate-900 rounded-lg p-2 border border-slate-700 hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-location-dot text-green-400 mr-2"></i>
-                                <span class="text-xs lang-txt" data-en="Send Location" data-ru="Отправить локацию">Send Location</span>
+                            <button onclick="requestLocation()" class="w-full flex items-center justify-center bg-slate-900/50 rounded-xl p-3 border border-slate-700 hover:bg-slate-800 transition">
+                                <i class="fa-solid fa-location-dot text-green-400 mr-3"></i>
+                                <span class="text-sm lang-txt" data-en="Send Location" data-ru="Локация">Send Location</span>
                             </button>
                         </div>
-                        <a href="https://www.instagram.com/best_home_care_phu" target="_blank" class="block text-center mt-5 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold text-sm transition lang-txt" data-en="BOOK NOW" data-ru="ЗАБРОНИРОВАТЬ">BOOK NOW</a>
+                        <a href="https://www.instagram.com/best_home_care_phu" target="_blank" class="block text-center mt-6 bg-blue-600 text-white py-4 rounded-2xl font-bold text-sm btn-book">BOOK NOW</a>
                     </div>
                 </div>
 
@@ -116,48 +101,32 @@
         </div>
     </main>
 
-    <footer class="text-center py-6">
-        <p class="text-slate-500 text-[10px] tracking-widest uppercase">Bang Tao • Phuket • Thailand</p>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Initialization
         const swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            centeredSlides: true,
-            slidesPerView: "auto",
-            coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2.5, slideShadows: false },
-            pagination: { el: ".swiper-pagination" },
+            effect: "coverflow", centeredSlides: true, slidesPerView: "auto",
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 150, modifier: 1.5, slideShadows: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
         });
 
-        // Multi-language System
         function setLanguage(lang) {
             document.querySelectorAll('.lang-txt').forEach(el => {
                 el.innerText = el.getAttribute(`data-${lang}`);
             });
-            
-            // UI Toggle
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
-
-            // Header sub-text
+            document.querySelectorAll('.btn-book').forEach(el => {
+                el.innerText = lang === 'en' ? 'BOOK NOW' : 'ЗАБРОНИРОВАТЬ';
+            });
             const sub = document.getElementById('sub-header');
             sub.innerText = lang === 'en' ? "Phuket Premium Service" : "Премиальный сервис на Пхукете";
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
         }
 
-        // Location Function
         function requestLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    alert("Location Captured! We will contact you on Instagram for the details.");
-                }, () => {
-                    alert("Please enable location services.");
-                });
+                navigator.geolocation.getCurrentPosition(() => alert("Location captured!"), () => alert("Enable GPS please."));
             }
         }
-
-        // Set default lang
         setLanguage('en');
     </script>
 </body>
