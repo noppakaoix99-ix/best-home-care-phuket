@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Home Care Phuket | Premium Booking</title>
+    <title>Best Home Care Phuket | Premium Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Kanit:wght@300;400;600&display=swap');
         body { font-family: 'Inter', 'Kanit', sans-serif; background-color: #0f172a; color: #f8fafc; }
-        .swiper { width: 100%; padding-top: 10px; padding-bottom: 40px; }
+        .swiper { width: 100%; padding-bottom: 40px; }
+        .service-swiper { height: 500px; }
+        .review-swiper { height: 350px; }
         .swiper-slide { width: 310px; }
-        .service-card { 
-            background: #1e293b; border: 1px solid #334155; border-radius: 24px; 
-            overflow: hidden; transition: 0.3s;
+        .service-card, .review-card { 
+            background: #1e293b; border: 1px solid #334155; border-radius: 24px; overflow: hidden;
         }
         .lang-btn.active { background-color: #3b82f6; color: white; border-color: #3b82f6; }
         input { background: #0f172a !important; color: white !important; border: 1px solid #334155 !important; }
@@ -39,7 +40,7 @@
     <main class="max-w-4xl mx-auto px-4 py-4">
         <div class="bg-slate-800/50 p-5 rounded-3xl border border-slate-700 mb-6">
             <h2 class="text-sm font-bold mb-4 flex items-center lang-txt" data-en="Customer Information" data-ru="Информация о клиенте">
-                <i class="fa-solid fa-user-circle mr-2 text-blue-400"></i> Customer Information
+                <i class="fa-solid fa-user-circle mr-2 text-blue-400"></i> Customer Info
             </h2>
             <div class="grid grid-cols-1 gap-3">
                 <input type="text" id="cust-name" placeholder="Full Name / Имя" class="p-3 rounded-xl outline-none text-sm w-full">
@@ -47,7 +48,8 @@
             </div>
         </div>
 
-        <div class="swiper mySwiper">
+        <h2 class="text-sm font-bold mb-4 uppercase tracking-widest text-gray-500 lang-txt" data-en="Our Services" data-ru="Наши услуги">Our Services</h2>
+        <div class="swiper service-swiper">
             <div class="swiper-wrapper">
                 
                 <div class="swiper-slide service-card">
@@ -55,41 +57,31 @@
                     <div class="p-5">
                         <h3 class="text-lg font-bold lang-txt" data-en="Cleaning Service" data-ru="Уборка">Cleaning Service</h3>
                         <div class="mt-4 space-y-2">
-                            <label class="text-[10px] text-gray-400 uppercase font-bold lang-txt" data-en="Select Date" data-ru="Выберите дату">Select Date</label>
                             <input type="date" id="date-cleaning" class="w-full p-2 rounded-lg text-sm">
-                            
                             <button onclick="getLocation('cleaning')" id="loc-cleaning" class="w-full py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-location-dot text-green-400"></i>
-                                <span class="lang-txt" data-en="Share Location" data-ru="Поделиться локацией">Share Location</span>
+                                <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Share Location" data-ru="Локация">Share Location</span>
                             </button>
                         </div>
                         <div class="flex gap-2 mt-4">
-                            <button onclick="sendBooking('Instagram', 'Cleaning')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold shadow-lg">
-                                <i class="fa-brands fa-instagram mr-1"></i> IG
-                            </button>
-                            <button onclick="sendBooking('Telegram', 'Cleaning')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold shadow-lg">
-                                <i class="fa-brands fa-telegram mr-1"></i> Telegram
-                            </button>
+                            <button onclick="sendBooking('Instagram', 'Cleaning')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold uppercase">IG DM</button>
+                            <button onclick="sendBooking('Telegram', 'Cleaning')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold uppercase">Telegram</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="swiper-slide service-card">
-                    <img src="https://images.pexels.com/photos/261181/pexels-photo-261181.jpeg?auto=compress&cs=tinysrgb&w=500" class="h-40 w-full object-cover">
+                    <img src="pool1.jpg" class="h-40 w-full object-cover" alt="Pool Service">
                     <div class="p-5">
                         <h3 class="text-lg font-bold lang-txt" data-en="Pool Service" data-ru="Бассейн">Pool Service</h3>
                         <div class="mt-4 space-y-2">
-                            <label class="text-[10px] text-gray-400 uppercase font-bold lang-txt" data-en="Select Date" data-ru="Выберите дату">Select Date</label>
                             <input type="date" id="date-pool" class="w-full p-2 rounded-lg text-sm">
-                            
                             <button onclick="getLocation('pool')" id="loc-pool" class="w-full py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-location-dot text-green-400"></i>
-                                <span class="lang-txt" data-en="Share Location" data-ru="Поделиться локацией">Share Location</span>
+                                <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Share Location" data-ru="Локация">Share Location</span>
                             </button>
                         </div>
                         <div class="flex gap-2 mt-4">
-                            <button onclick="sendBooking('Instagram', 'Pool')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold shadow-lg">IG</button>
-                            <button onclick="sendBooking('Telegram', 'Pool')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold shadow-lg">Telegram</button>
+                            <button onclick="sendBooking('Instagram', 'Pool')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold uppercase">IG DM</button>
+                            <button onclick="sendBooking('Telegram', 'Pool')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold uppercase">Telegram</button>
                         </div>
                     </div>
                 </div>
@@ -99,21 +91,27 @@
                     <div class="p-5">
                         <h3 class="text-lg font-bold lang-txt" data-en="Garden Care" data-ru="Уход за садом">Garden Care</h3>
                         <div class="mt-4 space-y-2">
-                            <label class="text-[10px] text-gray-400 uppercase font-bold lang-txt" data-en="Select Date" data-ru="Выберите дату">Select Date</label>
                             <input type="date" id="date-garden" class="w-full p-2 rounded-lg text-sm">
-                            
                             <button onclick="getLocation('garden')" id="loc-garden" class="w-full py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-location-dot text-green-400"></i>
-                                <span class="lang-txt" data-en="Share Location" data-ru="Поделиться локацией">Share Location</span>
+                                <i class="fa-solid fa-location-dot text-green-400"></i> <span class="lang-txt" data-en="Share Location" data-ru="Локация">Share Location</span>
                             </button>
                         </div>
                         <div class="flex gap-2 mt-4">
-                            <button onclick="sendBooking('Instagram', 'Garden')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold shadow-lg">IG</button>
-                            <button onclick="sendBooking('Telegram', 'Garden')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold shadow-lg">Telegram</button>
+                            <button onclick="sendBooking('Instagram', 'Garden')" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-xs font-bold uppercase">IG DM</button>
+                            <button onclick="sendBooking('Telegram', 'Garden')" class="flex-1 bg-[#0088cc] py-3 rounded-xl text-xs font-bold uppercase">Telegram</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
 
+        <h2 class="text-sm font-bold mt-10 mb-4 uppercase tracking-widest text-gray-500 lang-txt" data-en="Customer Reviews" data-ru="Отзывы клиентов">Customer Reviews</h2>
+        <div class="swiper review-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide review-card"><img src="survey1.jpg" class="w-full h-full object-cover"></div>
+                <div class="swiper-slide review-card"><img src="survey2.jpg" class="w-full h-full object-cover"></div>
+                <div class="swiper-slide review-card"><img src="survey3.jpg" class="w-full h-full object-cover"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -122,11 +120,15 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         let userLocation = "Not provided";
-        const swiper = new Swiper(".mySwiper", {
+        
+        // Swiper Config
+        const commonConfig = {
             effect: "coverflow", centeredSlides: true, slidesPerView: "auto",
-            coverflowEffect: { rotate: 0, stretch: 0, depth: 150, modifier: 1.5, slideShadows: false },
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 1.5, slideShadows: false },
             pagination: { el: ".swiper-pagination", clickable: true },
-        });
+        };
+        new Swiper(".service-swiper", commonConfig);
+        new Swiper(".review-swiper", commonConfig);
 
         function setLanguage(lang) {
             document.querySelectorAll('.lang-txt').forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
@@ -139,33 +141,38 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((pos) => {
                     userLocation = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-                    alert("📍 Location saved successfully!");
-                    document.getElementById(`loc-${type}`).classList.add('bg-green-900/50');
+                    alert("📍 Location saved!");
+                    document.getElementById(`loc-${type}`).style.backgroundColor = "#064e3b";
                 }, () => alert("Please enable GPS."));
             }
         }
 
-        function sendBooking(platform, serviceName) {
+        async function sendBooking(platform, serviceName) {
             const name = document.getElementById('cust-name').value;
             const phone = document.getElementById('cust-phone').value;
             const date = document.getElementById(`date-${serviceName.toLowerCase()}`).value;
 
             if (!name || !phone || !date) {
-                alert("Please fill in Name, Phone, and Date!");
+                alert("กรุณากรอกข้อมูล ชื่อ เบอร์โทร และวันที่ให้ครบถ้วนครับ!");
                 return;
             }
 
-            const message = `🚨 NEW BOOKING 🚨\n\nService: ${serviceName}\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nLocation: ${userLocation}`;
+            const message = `✨ Best Home Care Phuket ✨\nService: ${serviceName}\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nLocation: ${userLocation}`;
             
             if (platform === 'Telegram') {
-                // ส่งไปที่ Telegram ของคุณ (ผ่านลิงก์เบอร์โทร)
                 const telegramUrl = `https://t.me/+66982226426?text=${encodeURIComponent(message)}`;
                 window.open(telegramUrl, '_blank');
             } else {
-                // เด้งไป Instagram (ส่งผ่านข้อความ Direct โดยตรงไม่ได้ผ่าน URL แต่สามารถเด้งไปหน้าโปรไฟล์พร้อมให้ลูกค้าก๊อปข้อความไปวาง)
-                alert("Copied summary! Please paste it into Instagram DM.");
-                navigator.clipboard.writeText(message);
-                window.open("https://www.instagram.com/best_home_care_phu", '_blank');
+                // สำหรับ Instagram: Copy ข้อความลง Clipboard และเปิดหน้า DM
+                try {
+                    await navigator.clipboard.writeText(message);
+                    alert("สรุปข้อมูลถูกคัดลอกแล้ว! คุณสามารถกด 'วาง' ในช่องแชทได้เลยครับ");
+                    // ลิงก์ตรงไปยัง Direct Message ของแอคเคาท์ที่ระบุ
+                    window.open("https://ig.me/m/best_home_care_phu", '_blank');
+                } catch (err) {
+                    alert("ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาส่งด้วยตนเองที่หน้า IG");
+                    window.open("https://www.instagram.com/best_home_care_phu", '_blank');
+                }
             }
         }
     </script>
